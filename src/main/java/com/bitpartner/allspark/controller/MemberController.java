@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.bitpartner.allspark.service.MemberService;
+import com.sun.istack.internal.Nullable;
+
 import org.springframework.web.servlet.ModelAndView;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
@@ -31,7 +33,7 @@ public class MemberController {
 	 * @return
 	 */
 	@GetMapping("/event")
-	public String eventPage(Model model, @RequestParam("recomId") String recomId) {
+	public String eventPage(Model model,  @RequestParam(name = "recomId", required = false) String recomId) {
 		if(recomId != null) {
 			BASE64Decoder base64Decoder = new BASE64Decoder();
 			try{
