@@ -1,0 +1,17 @@
+server:
+  port: 8080
+  
+spring:
+  application:
+      name: allspark    
+  datasource:
+    url: jdbc:mysql://13.209.75.24:3306/ALL_SPARK_DB
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+      show-sql: true
+
+
+     
