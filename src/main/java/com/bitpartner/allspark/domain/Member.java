@@ -33,7 +33,7 @@ public class Member {
 	
     @PrePersist
     void preInsert() {
-        this.regDate = new Date();
+    	this.regDate = new Date();
     }
 
 	public long getId() {
