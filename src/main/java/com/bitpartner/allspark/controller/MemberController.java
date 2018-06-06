@@ -3,6 +3,7 @@ package com.bitpartner.allspark.controller;
 import com.bitpartner.allspark.Constant;
 import com.bitpartner.allspark.domain.Member;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -89,8 +90,20 @@ public class MemberController {
 	 */
 	@GetMapping("/idCheck")
 	@ResponseBody
-	public Member idCheck(@RequestParam("memberId") String memberId) {
-		return memberService.findByMemberId(memberId);
+	public Map<String, Object> idCheck(@RequestParam("memberId") String memberId) {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+
+		Member findedMember = memberService.findByMemberId(memberId);
+
+		if(findedMember != null) {
+			resultMap.put("code", Constant.IS_USED_FAILED_CODE);
+			resultMap.put("msg", Constant.IS_USED_FAILED);
+		}
+		resultMap.put("code", Constant.IS_USED_SUCCESS_CODE);
+		resultMap.put("msg", Constant.IS_USED_SUCCESS);
+
+		return resultMap;
 	}
 
 }
