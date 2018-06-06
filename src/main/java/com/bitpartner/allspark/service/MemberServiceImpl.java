@@ -36,6 +36,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public Member findByMemberId(String memberId) {
+
         return memberRepository.findByMemberId(memberId);
     }
 
