@@ -1,20 +1,26 @@
 package com.bitpartner.allspark.controller;
 
+import com.bitpartner.allspark.Constant;
 import com.bitpartner.allspark.domain.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.bitpartner.allspark.service.MemberService;
 import org.springframework.web.servlet.ModelAndView;
+import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value = "/ico/allspark/recom")
 public class MemberController {
-
 
 	@Autowired
 	private MemberService memberService;
@@ -25,25 +31,20 @@ public class MemberController {
 	 * @return
 	 */
 	@GetMapping("/event")
-	public String eventPage() {
+	public String eventPage(Model model, @RequestParam("recomId") String recomId) {
+		if(recomId != null) {
+			BASE64Decoder base64Decoder = new BASE64Decoder();
+			try{
+				String decodedRecomdId = new String(base64Decoder.decodeBuffer(recomId));
+
+				if(decodedRecomdId.equals(recomId + Constant.CERT_KEY)) {
+					model.addAttribute("recomId", decodedRecomdId);
+				}
+			}catch(IOException e) {
+				e.printStackTrace();
+			}
+		}
 		return "event";
-	}
-
-	/**
-	 * recommendPage 접속 Url
-	 * 추천하기 로그인 페이지
-	 * @return
-	 */
-	@GetMapping("/recommend")
-	public String recommendPage() { return "recommend"; }
-
-	/**
-	 * donePage 접속 Url
-	 * 추천링크 페이지(신청하기 혹은 추천하기 완료 이후의 페이지)
-	 */
-	@GetMapping("/done")
-	public String donePage(HttpServletRequest request) {
-		return "done";
 	}
 
 	/**
@@ -53,8 +54,19 @@ public class MemberController {
 	 */
 	@PostMapping("/apply")
 	@ResponseBody
-	public Member apply(@RequestBody @Valid Member member) {
-		return memberService.insertMember(member);
+	public Map<String, Object> apply(@RequestBody @Valid Member member, HttpServletRequest request) {
+
+		Member insertedMember = memberService.insertMember(member);
+
+		BASE64Encoder base64Encoder = new BASE64Encoder();
+		String encodedId = base64Encoder.encode((insertedMember.getMemberId() + Constant.CERT_KEY).getBytes());
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+
+		resultMap.put("member", insertedMember);
+		resultMap.put("recomUrl", request.getRemoteAddr() + Constant.EVENT_URL + "?recomdId=" + encodedId);
+
+		return resultMap;
 	}
 
 	/**
@@ -68,7 +80,6 @@ public class MemberController {
 		return memberService.findByMemberIdAndPass(member.getMemberId(), member.getMemberPassword());
 	}
 
-
 	/**
 	 * 아이디 중복체크
 	 * @param memberId
@@ -76,9 +87,8 @@ public class MemberController {
 	 */
 	@GetMapping("/idCheck")
 	@ResponseBody
-	public Member idCheck(@RequestParam("membetId") String memberId) {
+	public Member idCheck(@RequestParam("memberId") String memberId) {
 		return memberService.findByMemberId(memberId);
 	}
-
 
 }

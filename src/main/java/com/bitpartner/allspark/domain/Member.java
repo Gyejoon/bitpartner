@@ -1,11 +1,16 @@
 package com.bitpartner.allspark.domain;
 
+import com.bitpartner.allspark.Constant;
+import sun.misc.BASE64Encoder;
+
+import java.io.Serializable;
+import java.util.Base64;
 import java.util.Date;
 
 import javax.persistence.*;
 
 @Entity
-public class Member {
+public class Member implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,9 +32,8 @@ public class Member {
 	@Column(name = "regDate", nullable = false, updatable = false, insertable = true)
 	private Date regDate;
 	
-	// 추천인 식별 id
-	private long recomMember;
-	
+	// 추천인 memberId
+	private String recomMemberId;
 	
     @PrePersist
     void preInsert() {
@@ -76,14 +80,12 @@ public class Member {
 		this.regDate = regDate;
 	}
 
-	public long getRecomMember() {
-		return recomMember;
+	public String getRecomMemberId() {
+		return recomMemberId;
 	}
 
-	public void setRecomMember(long recomMember) {
-		this.recomMember = recomMember;
+	public void setRecomMemberId(String recomMemberId) {
+		this.recomMemberId = recomMemberId;
 	}
-	
 
-	
 }
