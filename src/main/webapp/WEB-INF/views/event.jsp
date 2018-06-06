@@ -11,7 +11,7 @@
 	<script src="/js/jquery-2.1.1.min.js"></script>
 
 	<!-- favicon -->
-	<link rel="icon" href="/img/logo/favicon.png"/>
+	<link rel="icon" href="/img/logo/allspark_favicon.png"/>
 
 	<!-- Vendor CSS -->
 	<link href="/vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
@@ -26,7 +26,7 @@
 	<ul class="header-inner">
 		<!-- title logo start -->
 		<li id="logo" class="logo visible" style="">
-			<a href="index.html"><img src="/img/logo/logo-beta.png" alt="logo"></a>
+			<a href="index.html"><img src="/img/logo/allspark_logo.png" alt="logo"></a>
 		</li>
 		<!-- title logo end -->
 	</ul>
@@ -45,7 +45,9 @@
 
 					<div class="card">
                         <div class="card-header">
-                            <h2>Carousel <small>A slideshow component for cycling through elements, like a carousel.</small></h2>
+                            <h2>제목
+                                <small>내용</small>
+                            </h2>
                         </div>
 
                         <div class="card-body card-padding">
@@ -95,10 +97,10 @@
                         <div class="card-body card-padding">
                             <p class="lead">부제목</p>
                             <p>내용</p>
-                            <button class="btn btn-primary" data-toggle="modal" href="#applyModal">신청하기</button>
-                            <button class="btn btn-default" data-toggle="modal" href="#recomModal">추천하기</button>
-                            <%@include file="apply_modal.jsp"%>
-                            <%@include file="recom_modal.jsp"%>
+                            <button class="btn btn-default" data-toggle="modal" href="#applyModal">신청하기</button>
+                            <button style="margin-left: 1em;" class="btn btn-default" data-toggle="modal" href="#recomModal">추천하기</button>
+                            <div><%@include file="apply_modal.jsp"%></div>
+                            <div><%@include file="recom_modal.jsp"%></div>
                         </div>
 
                     </div>

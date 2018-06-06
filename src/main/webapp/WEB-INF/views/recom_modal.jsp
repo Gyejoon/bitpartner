@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
-<form name="applyForm" method="post">
-    <div class="modal fade" id="applyModal" tabindex="-1" role="dialog"
+<form name="recomForm" method="post">
+    <div class="modal fade" id="recomModal" tabindex="-1" role="dialog"
          aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -10,7 +10,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <!-- 아이디 -->
-                        <div class="col-xs-6">
+                        <div class="col-xs-12">
                             <div class="input-group">
 								<span class="input-group-addon"><i
                                         class="zmdi zmdi-account"></i></span>
@@ -23,7 +23,7 @@
                     </div>
                     <div class="row">
                         <!-- 비밀번호 -->
-                        <div class="col-xs-6">
+                        <div class="col-xs-12">
                             <div class="input-group">
 								<span class="input-group-addon"><i
                                         class="zmdi zmdi-account"></i></span>
