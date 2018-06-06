@@ -99,9 +99,10 @@ public class MemberController {
 		if(findedMember != null) {
 			resultMap.put("code", Constant.IS_USED_FAILED_CODE);
 			resultMap.put("msg", Constant.IS_USED_FAILED);
+		} else {
+			resultMap.put("code", Constant.IS_USED_SUCCESS_CODE);
+			resultMap.put("msg", Constant.IS_USED_SUCCESS);
 		}
-		resultMap.put("code", Constant.IS_USED_SUCCESS_CODE);
-		resultMap.put("msg", Constant.IS_USED_SUCCESS);
 
 		return resultMap;
 	}
