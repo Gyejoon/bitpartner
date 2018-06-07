@@ -98,7 +98,7 @@
                             <p class="lead">부제목</p>
                             <p>내용</p>
                             <button class="btn btn-default" data-toggle="modal" href="#applyModal">신청하기</button>
-                            <button style="margin-left: 1em;" class="btn btn-default" data-toggle="modal" href="#recomModal">추천하기</button>
+                            <button style="margin-left: 0.5em;" class="btn btn-default" data-toggle="modal" href="#recomModal">추천하기</button>
                             <div><%@include file="apply_modal.jsp"%></div>
                             <div><%@include file="recom_modal.jsp"%></div>
                         </div>

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script>
     $(function () {
         $('#applyModal').on('hidden.bs.modal', function () {
@@ -51,6 +52,7 @@
         const id = applyForm.id.value;
         const pass = applyForm.pass.value;
         const repass = applyForm.repass.value;
+        const recomId = applyForm.recomMemberId.value;
         if (pass != repass) {
             alert('비밀번호가 같지 않습니다.');
             applyForm.repass.focus();
@@ -61,10 +63,10 @@
             alert('비밀번호, email을 입력해주셔야 합니다.');
             return;
         }
-        callAjaxForCreate(id, pass, email);
+        callAjaxForCreate(id, pass, email, recomId);
     };
 
-    const callAjaxForCreate = function (id, pass, email) {
+    const callAjaxForCreate = function (id, pass, email, recomId) {
         alert(id + "," + pass + "," + email);
         $.ajax({
             type: "post",
@@ -73,7 +75,8 @@
             data: JSON.stringify({
                 memberId: id,
                 memberPassword: pass,
-                memberEmail: email
+                memberEmail: email,
+                recomMemberId : recomId
             }),
             success: function (resdata) {
                 //alert(resdata.recomUrl);
@@ -86,7 +89,7 @@
             }
         });
     };
-    
+
     const copyApplyClipboard = function () {
         $('#apply_link').select();
         document.execCommand("copy");
@@ -94,6 +97,7 @@
     }
 </script>
 <form id="applyForm" name="applyForm" method="post">
+    <input type="hidden" value="${recomdId}" name="recomMemberId">
     <div class="modal fade" id="applyModal" tabindex="-1" role="dialog"
          aria-hidden="true">
         <div class="modal-dialog">

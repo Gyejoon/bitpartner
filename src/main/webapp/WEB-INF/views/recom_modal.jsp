@@ -1,10 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script>
     $(function () {
         $('#recomModal').on('hidden.bs.modal', function () {
             $('form').each(function () {
                 this.reset();
-
             });
         });
     });
@@ -13,23 +13,25 @@
       const recomForm = document.recomForm;
       const id = recomForm.id.value;
       const pass = recomForm.pass.value;
+      const recomId = recomForm.recomMemberId.value;
       if(id == ""){
           alert("ID를 입력해주세요!");
       }
         if(pass == ""){
             alert("비밀번호를 입력해주세요!");
         }
-      AjaxForLogin(id, pass);
+      AjaxForLogin(id, pass, recomId);
     };
 
-    const AjaxForLogin = function (id, pass) {
+    const AjaxForLogin = function (id, pass, recomId) {
         $.ajax({
             type : "post",
             url : "/ico/allspark/recom/recommend",
             contentType: "application/json",
             data : JSON.stringify({
                 memberId : id,
-                memberPassword : pass
+                memberPassword : pass,
+                recomMemberId : recomId
             }),
             success : function (resdata) {
                 /*alert(result);
@@ -52,6 +54,7 @@
 
 </script>
 <form name="recomForm" method="post">
+    <input type="hidden" value="${recomdId}" name="recomMemberId">
     <div class="modal fade" id="recomModal" tabindex="-1" role="dialog"
          aria-hidden="true">
         <div class="modal-dialog">
@@ -59,7 +62,7 @@
                 <div class="modal-header">
                     <h4 id="recom_id" class="modal-title">로그인</h4>
                 </div>
-                <div id="recom_body" class="modal-body">
+                <div id="recomBody" class="modal-body">
                     <div class="row">
                         <!-- 아이디 -->
                         <div class="col-xs-12">
