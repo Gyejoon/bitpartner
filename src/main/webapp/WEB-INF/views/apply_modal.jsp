@@ -1,5 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <script>
+    $(function() {
+        $('#applyModal').on('hidden.bs.modal', function () {
+            $('form').each(function () {
+                this.reset();
+                $('#returnAjaxForNameUse').empty().css("color", "#000000");
+            });
+        });
+    });
+
     const checkNameIsUsed = function() {
         const apply_form = document.applyForm;
         const value = apply_form.id.value;
@@ -18,7 +27,11 @@
                 memberId : value
             },
             success : function(resdata) {
-                $("#returnAjaxForNameUse").html(resdata);
+                if(resdata.code){
+                    $("#returnAjaxForNameUse").html(resdata.msg);
+                }else {
+                    $("#returnAjaxForNameUse").html(resdata.msg).css("color", "#ff0000");
+                }
             },
             error : function() {
                 alert("Error");
@@ -44,22 +57,27 @@
             return;
         }
         const email = applyForm.email.value;
+        if(pass == "" || email == ""){
+            alert('비밀번호, email을 입력해주셔야 합니다.');
+            return;
+        }
         callAjaxForCreate(id, pass, email);
     };
 
     const callAjaxForCreate = function(id, pass, email) {
+        alert(id+","+pass+","+email);
         $.ajax({
             type : "post",
             url : "/ico/allspark/recom/apply",
-            data : {
-                id : id,
-                pass : pass,
-                email : email
-            },
+            contentType: "application/json",
+            data : JSON.stringify({
+                memberId : id,
+                memberPassword : pass,
+                memberEmail : email
+            }),
             success : function(resdata) {
-                alert(resdata);
+                alert(resdata.recomUrl);
                 $('#applyModal').modal('hide');
-                $( "#grid" ).pqGrid("refreshDataAndView" );
             },
             error : function() {
                 alert("Error");
@@ -67,7 +85,7 @@
         });
     };
 </script>
-<form name="applyForm" method="post">
+<form id="applyForm" name="applyForm" method="post">
     <div class="modal fade" id="applyModal" tabindex="-1" role="dialog"
          aria-hidden="true">
         <div class="modal-dialog">
@@ -75,7 +93,7 @@
                 <div class="modal-header">
                     <h4 class="modal-title">회원가입</h4>
                 </div>
-                <div class="modal-body">
+                <div id="applyBody" class="modal-body">
                     <div class="row">
                         <!-- 아이디 -->
                         <div class="col-xs-6">
@@ -126,12 +144,13 @@
 								<span class="input-group-addon"><i
                                         class="zmdi zmdi-email"></i></span>
                                 <div class="fg-line">
-                                    <input name="email" type="text" class="form-control"
+                                    <input name="email" type="email" class="form-control"
                                            placeholder="이메일 입력">
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <input type="button" id="recom_link" class=""/>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-link" onclick="createWorker()">신청완료
                         </button>
