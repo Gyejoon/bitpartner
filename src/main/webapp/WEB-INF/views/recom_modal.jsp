@@ -54,7 +54,7 @@
 
 </script>
 <form name="recomForm" method="post">
-    <input type="hidden" value="${recomdId}" name="recomMemberId">
+    <input type="hidden" value="<%=request.getAttribute("recomdId")%>" name="recomMemberId">
     <div class="modal fade" id="recomModal" tabindex="-1" role="dialog"
          aria-hidden="true">
         <div class="modal-dialog">

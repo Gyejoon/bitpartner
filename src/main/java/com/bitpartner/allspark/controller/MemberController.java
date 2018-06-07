@@ -34,16 +34,23 @@ public class MemberController {
 	 * @return
 	 */
 	@GetMapping("/event")
-	public String eventPage(Model model,  @RequestParam(name = "recomId", required = false) String recomId) {
-		if(recomId != null) {
+	public String eventPage(Model model,  @RequestParam(name = "recomdId", required = false) String recomdId) {
+		if(recomdId != null) {
 			BASE64Decoder base64Decoder = new BASE64Decoder();
-			try{
-				String decodedRecomdId = new String(base64Decoder.decodeBuffer(recomId));
 
-				if(decodedRecomdId.equals(recomId + Constant.CERT_KEY)) {
-					model.addAttribute("recomId", decodedRecomdId);
+			try{
+				String decodedRecomdId = new String(base64Decoder.decodeBuffer(recomdId));
+				int certKeylocation = decodedRecomdId.indexOf(Constant.CERT_KEY);
+				String certKey = decodedRecomdId.substring(certKeylocation);
+				String originRecomdId = decodedRecomdId.substring(0, certKeylocation);
+
+				if(certKey.equals(Constant.CERT_KEY)) {
+					model.addAttribute("recomdId", originRecomdId);
 				}
+
 			}catch(IOException e) {
+				e.printStackTrace();
+			}catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
@@ -88,8 +95,8 @@ public class MemberController {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 
-        resultMap.put("member", finededMember);
-        resultMap.put("recomUrl", Constant.EVENT_URL + "?recomdId=" + encodedId);
+		resultMap.put("member", finededMember);
+		resultMap.put("recomUrl", Constant.EVENT_URL + "?recomdId=" + encodedId);
 
 		return resultMap;
 	}
