@@ -57,7 +57,7 @@ public class MemberController {
 	 */
 	@PostMapping("/apply")
 	@ResponseBody
-	public Map<String, Object> apply(@RequestBody @Valid Member member, HttpServletRequest request) {
+	public Map<String, Object> apply(@RequestBody @Valid Member member) {
 
 		Member insertedMember = memberService.insertMember(member);
 
@@ -79,8 +79,19 @@ public class MemberController {
 	 */
 	@PostMapping("/recommend")
 	@ResponseBody
-	public Member recommend(@RequestBody @Valid Member member) {
-		return memberService.findByMemberIdAndPass(member.getMemberId(), member.getMemberPassword());
+	public Map<String, Object> recommend(@RequestBody @Valid Member member) {
+
+		Member finededMember = memberService.findByMemberIdAndPass(member.getMemberId(), member.getMemberPassword());
+
+		BASE64Encoder base64Encoder = new BASE64Encoder();
+		String encodedId = base64Encoder.encode( (finededMember.getMemberId() + Constant.CERT_KEY).getBytes());
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+
+        resultMap.put("member", finededMember);
+        resultMap.put("recomUrl", Constant.EVENT_URL + "?recomdId=" + encodedId);
+
+		return resultMap;
 	}
 
 	/**

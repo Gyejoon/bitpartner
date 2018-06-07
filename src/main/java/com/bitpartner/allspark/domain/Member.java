@@ -31,7 +31,7 @@ public class Member implements Serializable {
 	// 신청일
 	@Column(name = "regDate", nullable = false, updatable = false, insertable = true)
 	private Date regDate;
-	
+
 	// 추천인 memberId
 	private String recomMemberId;
 	
