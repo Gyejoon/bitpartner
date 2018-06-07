@@ -40,7 +40,7 @@
         });
     };
 
-    const createWorker = function () {
+    const createMember = function () {
         if ($("#returnAjaxForNameUse").html() == "") {
             alert('ID를 입력해주세요!');
             return;
@@ -63,11 +63,19 @@
             alert('비밀번호, email을 입력해주셔야 합니다.');
             return;
         }
+        var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+        // 검증에 사용할 정규식 변수 regExp에 저장
+
+        if (email.match(regExp) == null) {
+            alert('이메일 규칙에 맞게 작성해 주십시오.');
+            applyForm.email.focus();
+            return;
+        }
+
         callAjaxForCreate(id, pass, email, recomId);
     };
 
     const callAjaxForCreate = function (id, pass, email, recomId) {
-        alert(id + "," + pass + "," + email);
         $.ajax({
             type: "post",
             url: "/ico/allspark/recom/apply",
@@ -156,14 +164,14 @@
 								<span class="input-group-addon"><i
                                         class="zmdi zmdi-email"></i></span>
                                 <div class="fg-line">
-                                    <input name="email" type="email" class="form-control"
-                                           placeholder="이메일 입력">
+                                    <input name="email" minlength="3" maxlength="64" type="email" class="form-control"
+                                           required placeholder="username@example.com" placeholder="이메일 입력" pattern=".+@+.">
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-link" onclick="createWorker()">신청완료</button>
+                        <button type="button" class="btn btn-link" onclick="createMember()">신청완료</button>
                         <button type="button" class="btn btn-link" data-dismiss="modal">닫기</button>
                     </div>
                 </div>
