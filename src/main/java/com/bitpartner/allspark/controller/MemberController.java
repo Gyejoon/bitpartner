@@ -3,15 +3,19 @@ package com.bitpartner.allspark.controller;
 import com.bitpartner.allspark.Constant;
 import com.bitpartner.allspark.domain.Member;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.bitpartner.allspark.service.MemberService;
+import com.sun.istack.internal.Nullable;
 
+import org.springframework.web.servlet.ModelAndView;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.HashMap;
@@ -21,103 +25,97 @@ import java.util.Map;
 @RequestMapping(value = "/ico/allspark/recom")
 public class MemberController {
 
-    @Autowired
-    private MemberService memberService;
+	@Autowired
+	private MemberService memberService;
 
-    /**
-     * eventPage 접속 Url
-     * 메인 이벤트 페이지
-     * @return
-     */
-    @GetMapping("/event")
-    public String eventPage(Model model,  @RequestParam(name = "recomdId", required = false) String recomdId) {
-        if(recomdId != null) {
-            BASE64Decoder base64Decoder = new BASE64Decoder();
+	/**
+	 * eventPage 접속 Url
+	 * 메인 이벤트 페이지
+	 * @return
+	 */
+	@GetMapping("/event")
+	public String eventPage(Model model,  @RequestParam(name = "recomId", required = false) String recomId) {
+		if(recomId != null) {
+			BASE64Decoder base64Decoder = new BASE64Decoder();
+			try{
+				String decodedRecomdId = new String(base64Decoder.decodeBuffer(recomId));
 
-            try{
-                String decodedRecomdId = new String(base64Decoder.decodeBuffer(recomdId));
-                int certKeylocation = decodedRecomdId.indexOf(Constant.CERT_KEY);
-                String certKey = decodedRecomdId.substring(certKeylocation);
+				if(decodedRecomdId.equals(recomId + Constant.CERT_KEY)) {
+					model.addAttribute("recomId", decodedRecomdId);
+				}
+			}catch(IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return "event";
+	}
 
-                if(certKey.equals(Constant.CERT_KEY)) {
-                    model.addAttribute("recomdId", decodedRecomdId);
-                }
+	/**
+	 * 신청하기
+	 * @param member
+	 * @return
+	 */
+	@PostMapping("/apply")
+	@ResponseBody
+	public Map<String, Object> apply(@RequestBody @Valid Member member) {
 
-            }catch(IOException e) {
-                e.printStackTrace();
-            }catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return "event";
-    }
+		Member insertedMember = memberService.insertMember(member);
 
-    /**
-     * 신청하기
-     * @param member
-     * @return
-     */
-    @PostMapping("/apply")
-    @ResponseBody
-    public Map<String, Object> apply(@RequestBody @Valid Member member) {
+		BASE64Encoder base64Encoder = new BASE64Encoder();
+		String encodedId = base64Encoder.encode((insertedMember.getMemberId() + Constant.CERT_KEY).getBytes());
 
-        Member insertedMember = memberService.insertMember(member);
+		Map<String, Object> resultMap = new HashMap<String, Object>();
 
-        BASE64Encoder base64Encoder = new BASE64Encoder();
-        String encodedId = base64Encoder.encode((insertedMember.getMemberId() + Constant.CERT_KEY).getBytes());
+		resultMap.put("member", insertedMember);
+		resultMap.put("recomUrl", Constant.EVENT_URL + "?recomdId=" + encodedId);
 
-        Map<String, Object> resultMap = new HashMap<String, Object>();
+		return resultMap;
+	}
 
-        resultMap.put("member", insertedMember);
-        resultMap.put("recomUrl", Constant.EVENT_URL + "?recomdId=" + encodedId);
+	/**
+	 * 추천하기
+	 * @param member
+	 * @return
+	 */
+	@PostMapping("/recommend")
+	@ResponseBody
+	public Map<String, Object> recommend(@RequestBody @Valid Member member) {
 
-        return resultMap;
-    }
+		Member finededMember = memberService.findByMemberIdAndPass(member.getMemberId(), member.getMemberPassword());
 
-    /**
-     * 추천하기
-     * @param member
-     * @return
-     */
-    @PostMapping("/recommend")
-    @ResponseBody
-    public Map<String, Object> recommend(@RequestBody @Valid Member member) {
+		BASE64Encoder base64Encoder = new BASE64Encoder();
+		String encodedId = base64Encoder.encode( (finededMember.getMemberId() + Constant.CERT_KEY).getBytes());
 
-        Member finededMember = memberService.findByMemberIdAndPass(member.getMemberId(), member.getMemberPassword());
-
-        BASE64Encoder base64Encoder = new BASE64Encoder();
-        String encodedId = base64Encoder.encode( (finededMember.getMemberId() + Constant.CERT_KEY).getBytes());
-
-        Map<String, Object> resultMap = new HashMap<String, Object>();
+		Map<String, Object> resultMap = new HashMap<String, Object>();
 
         resultMap.put("member", finededMember);
         resultMap.put("recomUrl", Constant.EVENT_URL + "?recomdId=" + encodedId);
 
-        return resultMap;
-    }
+		return resultMap;
+	}
 
-    /**
-     * 아이디 중복체크
-     * @param memberId
-     * @return
-     */
-    @GetMapping("/idCheck")
-    @ResponseBody
-    public Map<String, Object> idCheck(@RequestParam("memberId") String memberId) {
+	/**
+	 * 아이디 중복체크
+	 * @param memberId
+	 * @return
+	 */
+	@GetMapping("/idCheck")
+	@ResponseBody
+	public Map<String, Object> idCheck(@RequestParam("memberId") String memberId) {
 
-        Map<String, Object> resultMap = new HashMap<String, Object>();
+		Map<String, Object> resultMap = new HashMap<String, Object>();
 
-        Member findedMember = memberService.findByMemberId(memberId);
+		Member findedMember = memberService.findByMemberId(memberId);
 
-        if(findedMember != null) {
-            resultMap.put("code", Constant.IS_USED_FAILED_CODE);
-            resultMap.put("msg", Constant.IS_USED_FAILED);
-        } else {
-            resultMap.put("code", Constant.IS_USED_SUCCESS_CODE);
-            resultMap.put("msg", Constant.IS_USED_SUCCESS);
-        }
+		if(findedMember != null) {
+			resultMap.put("code", Constant.IS_USED_FAILED_CODE);
+			resultMap.put("msg", Constant.IS_USED_FAILED);
+		} else {
+			resultMap.put("code", Constant.IS_USED_SUCCESS_CODE);
+			resultMap.put("msg", Constant.IS_USED_SUCCESS);
+		}
 
-        return resultMap;
-    }
+		return resultMap;
+	}
 
 }
