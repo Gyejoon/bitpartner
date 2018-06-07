@@ -88,7 +88,7 @@ public class MemberController {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 
-        resultMap.put("member", finededMember);
+        resultMap.put("member", finededMember.getMemberId());
         resultMap.put("recomUrl", Constant.EVENT_URL + "?recomdId=" + encodedId);
 
 		return resultMap;

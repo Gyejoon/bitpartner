@@ -25,20 +25,30 @@
     const AjaxForLogin = function (id, pass) {
         $.ajax({
             type : "post",
-            url : "/ico/allspark/recom/login",
+            url : "/ico/allspark/recom/recommend",
+            contentType: "application/json",
             data : JSON.stringify({
                 memberId : id,
                 memberPassword : pass
             }),
-            success : function (result) {
-                alert(result);
-                $('#applyModal').modal('hide');
+            success : function (resdata) {
+                /*alert(result);
+                $('#applyModal').modal('hide');*/
+                $("#recomBody").css("display", "none");
+                $("#recom_link").val(resdata.recomUrl).attr("type", "text").css("visibility", "visible");
+                $("#recom_id").html('추천 ID : ' + resdata.member);
             },
             error : function() {
                 alert("Error");
             }
         });
     };
+
+    const copyRecomClipboard = function () {
+        $('#recom_link').select();
+        document.execCommand("copy");
+        $('#recomModal').modal('hide');
+    }
 
 </script>
 <form name="recomForm" method="post">
@@ -47,9 +57,9 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">회원가입</h4>
+                    <h4 id="recom_id" class="modal-title">로그인</h4>
                 </div>
-                <div class="modal-body">
+                <div id="recom_body" class="modal-body">
                     <div class="row">
                         <!-- 아이디 -->
                         <div class="col-xs-12">
@@ -83,6 +93,7 @@
                         <button type="button" class="btn btn-link" data-dismiss="modal">닫기</button>
                     </div>
                 </div>
+                <input style="visibility: hidden;" type="hidden" id="recom_link" class="btn btn-default btn-block" value="링크" onclick="copyRecomClipboard()"/>
             </div>
         </div>
 </form>

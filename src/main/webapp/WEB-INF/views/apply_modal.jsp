@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <script>
-    $(function() {
+    $(function () {
         $('#applyModal').on('hidden.bs.modal', function () {
             $('form').each(function () {
                 this.reset();
@@ -9,7 +9,7 @@
         });
     });
 
-    const checkNameIsUsed = function() {
+    const checkNameIsUsed = function () {
         const apply_form = document.applyForm;
         const value = apply_form.id.value;
         if (value == '') {
@@ -19,27 +19,27 @@
         callAjaxForNameUse(value);
     };
 
-    const callAjaxForNameUse = function(value) {
+    const callAjaxForNameUse = function (value) {
         $.ajax({
-            type : "get",
-            url : "/ico/allspark/recom/idCheck",
-            data : {
-                memberId : value
+            type: "get",
+            url: "/ico/allspark/recom/idCheck",
+            data: {
+                memberId: value
             },
-            success : function(resdata) {
-                if(resdata.code){
+            success: function (resdata) {
+                if (resdata.code) {
                     $("#returnAjaxForNameUse").html(resdata.msg);
-                }else {
+                } else {
                     $("#returnAjaxForNameUse").html(resdata.msg).css("color", "#ff0000");
                 }
             },
-            error : function() {
+            error: function () {
                 alert("Error");
             }
         });
     };
 
-    const createWorker = function() {
+    const createWorker = function () {
         if ($("#returnAjaxForNameUse").html() == "") {
             alert('ID를 입력해주세요!');
             return;
@@ -57,33 +57,41 @@
             return;
         }
         const email = applyForm.email.value;
-        if(pass == "" || email == ""){
+        if (pass == "" || email == "") {
             alert('비밀번호, email을 입력해주셔야 합니다.');
             return;
         }
         callAjaxForCreate(id, pass, email);
     };
 
-    const callAjaxForCreate = function(id, pass, email) {
-        alert(id+","+pass+","+email);
+    const callAjaxForCreate = function (id, pass, email) {
+        alert(id + "," + pass + "," + email);
         $.ajax({
-            type : "post",
-            url : "/ico/allspark/recom/apply",
+            type: "post",
+            url: "/ico/allspark/recom/apply",
             contentType: "application/json",
-            data : JSON.stringify({
-                memberId : id,
-                memberPassword : pass,
-                memberEmail : email
+            data: JSON.stringify({
+                memberId: id,
+                memberPassword: pass,
+                memberEmail: email
             }),
-            success : function(resdata) {
-                alert(resdata.recomUrl);
-                $('#applyModal').modal('hide');
+            success: function (resdata) {
+                //alert(resdata.recomUrl);
+                //$('#applyModal').modal('hide');
+                $("#applyBody").css("display", "none");
+                $("#apply_link").val(resdata.recomUrl).attr("type", "text").css("visibility", "visible");
             },
-            error : function() {
+            error: function () {
                 alert("Error");
             }
         });
     };
+    
+    const copyApplyClipboard = function () {
+        $('#apply_link').select();
+        document.execCommand("copy");
+        $('#applyModal').modal('hide');
+    }
 </script>
 <form id="applyForm" name="applyForm" method="post">
     <div class="modal fade" id="applyModal" tabindex="-1" role="dialog"
@@ -150,13 +158,12 @@
                             </div>
                         </div>
                     </div>
-                    <input type="button" id="recom_link" class=""/>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-link" onclick="createWorker()">신청완료
-                        </button>
+                        <button type="button" class="btn btn-link" onclick="createWorker()">신청완료</button>
                         <button type="button" class="btn btn-link" data-dismiss="modal">닫기</button>
                     </div>
                 </div>
+                <input style="visibility: hidden;" type="hidden" id="apply_link" class="btn btn-default btn-block" value="링크" onclick="copyApplyClipboard()"/>
             </div>
         </div>
 </form>
