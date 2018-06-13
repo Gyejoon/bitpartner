@@ -170,6 +170,7 @@
                             </div>
                         </div>
                     </div>
+                    <div class="g-recaptcha" data-sitekey="6LfrvV4UAAAAADNtv94xDLTH0ObZOAZfrFpoG3-h"></div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-link" onclick="createMember()">신청완료</button>
                         <button type="button" class="btn btn-link" data-dismiss="modal">닫기</button>

@@ -72,7 +72,6 @@ public class MemberController {
 		String encodedId = base64Encoder.encode((insertedMember.getMemberId() + Constant.CERT_KEY).getBytes());
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-
 		resultMap.put("member", insertedMember);
 		resultMap.put("recomUrl", Constant.EVENT_URL + "?recomdId=" + encodedId);
 
@@ -87,12 +86,9 @@ public class MemberController {
 	@PostMapping("/recommend")
 	@ResponseBody
 	public Map<String, Object> recommend(@RequestBody @Valid Member member) {
-
 		Member finededMember = memberService.findByMemberIdAndPass(member.getMemberId(), member.getMemberPassword());
-
 		BASE64Encoder base64Encoder = new BASE64Encoder();
 		String encodedId = base64Encoder.encode( (finededMember.getMemberId() + Constant.CERT_KEY).getBytes());
-
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 
 		resultMap.put("member", finededMember);

@@ -38,7 +38,7 @@
                 $('#applyModal').modal('hide');*/
                 $("#recomBody").css("display", "none");
                 $("#recom_link").val(resdata.recomUrl).attr("type", "text").css("visibility", "visible");
-                $("#recom_id").html('추천 ID : ' + resdata.member);
+                $("#recom_id").html('추천 ID : ' + resdata.member.memberId);
             },
             error : function() {
                 alert("Error");

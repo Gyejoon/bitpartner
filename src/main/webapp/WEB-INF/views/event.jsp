@@ -8,8 +8,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>AllSpark EVNET</title>
 
-	<script src="/js/jquery-2.1.1.min.js"></script>
-
 	<!-- favicon -->
 	<link rel="icon" href="/img/logo/allspark_favicon.png"/>
 
@@ -18,6 +16,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
 	<!-- CSS -->
 	<link href="/css/style.css" rel="stylesheet">
+
+    <!-- jquery -->
+    <script src="/js/jquery-2.1.1.min.js"></script>
+
+    <!-- captcha -->
+    <script src='https://www.google.com/recaptcha/api.js'/>
 </head>
 <body>
 <!-- header start -->
@@ -26,7 +30,7 @@
 	<ul class="header-inner">
 		<!-- title logo start -->
 		<li id="logo" class="logo visible" style="">
-			<a href="index.html"><img src="/img/logo/allspark_logo.png" alt="logo"></a>
+			<a href="event"><img src="/img/logo/allspark_logo.png" alt="logo"></a>
 		</li>
 		<!-- title logo end -->
 	</ul>
