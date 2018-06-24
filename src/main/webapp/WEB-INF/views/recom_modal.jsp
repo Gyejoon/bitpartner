@@ -41,7 +41,7 @@
                 $("#recom_link").val(resdata.recomUrl).attr("type", "text");
             },
             error : function() {
-                alert("Error");
+                alert("아이디가 없거나, 패스워드가 틀립니다.");
             }
         });
     };

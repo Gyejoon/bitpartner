@@ -15,7 +15,8 @@
         const apply_form = document.applyForm;
         const value = apply_form.id.value;
         if (value == '') {
-            alert('빈값이 입력되었습니다.');
+            alert('아이디를 입력해주세요.');
+            apply_form.id.focus();
             return;
         }
         callAjaxForNameUse(value);
