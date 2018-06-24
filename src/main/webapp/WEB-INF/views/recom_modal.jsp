@@ -14,12 +14,14 @@
       const id = recomForm.id.value;
       const pass = recomForm.pass.value;
       const recomId = recomForm.recomMemberId.value;
-      if(id == ""){
+      if(id == "") {
           alert("ID를 입력해주세요!");
+          return;
       }
-        if(pass == ""){
-            alert("비밀번호를 입력해주세요!");
-        }
+      if(pass == ""){
+          alert("비밀번호를 입력해주세요!");
+          return;
+      }
       AjaxForLogin(id, pass, recomId);
     };
 

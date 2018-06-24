@@ -1,6 +1,7 @@
 package com.bitpartner.allspark.controller;
 
 import com.bitpartner.allspark.Constant;
+import com.bitpartner.allspark.SHA256;
 import com.bitpartner.allspark.common.MailEntity;
 import com.bitpartner.allspark.common.MailService;
 import com.bitpartner.allspark.domain.CertCode;
@@ -160,10 +161,8 @@ public class MemberController {
 
         double range = end - start + 1;
         int i = (int) (r.nextDouble() * range + start);
-        int j = (int) (r.nextFloat() * range + end) << 2;
 
-        BASE64Encoder base64Encoder = new BASE64Encoder();
-        String certCodeStr = base64Encoder.encode(String.valueOf(i + j).getBytes());
+        String certCodeStr = SHA256.getEncSHA256(i + "").substring(0, 6);
 
         CertCode findedCertCode = certCodeRepository.emailCheck(email);
 
@@ -177,12 +176,21 @@ public class MemberController {
 
         certCodeRepository.save(certCode);
 
+        String mailContent = "[Bitpartner 회원가입 인증메일]\n\n";
+        String mailContent2 = "Allspark Korea Special event 신청을 위한 Bitpartner 회원가입 인증번호 입니다.\n";
+        String mailContent3 = "홈페이지에서 인증을 완료해주세요.\n\n";
+
+        String mailContent4 = "인증번호: " + certCodeStr + "\n\n";
+        String mailContent5 = "감사합니다.";
+
+
         MailEntity mailEntity = new MailEntity(
                 Constant.GMAIL_ID,
                 Constant.GMAIL_NAME,
                 email,
                 Constant.GMAIL_SUBJECT,
-                certCodeStr
+                mailContent + mailContent2 + mailContent3 +
+                mailContent4 + mailContent5
         );
 
         MailService mailService = new MailService(
