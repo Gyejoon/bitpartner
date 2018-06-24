@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="theme-color" content="#fec108">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AllSpark EVNET</title>
+    <title>AllSpark EVENT</title>
 
     <!-- favicon -->
     <link rel="icon" href="/img/logo/allspark_favicon.png"/>
@@ -27,7 +27,7 @@
 </head>
 <body>
 <!-- header start -->
-<header id="header" style="z-index : 99999;">
+<header id="header">
     <!-- header inner start -->
     <ul class="header-inner">
         <!-- title logo start -->
@@ -66,6 +66,7 @@
                                             href="http://allsparkchain.com/pdf/AllSparkWhitePaper.pdf"><b>다운로드</b></a><br/>
                                 백서(한글) : <a style="color: black;"
                                             href="http://www.allsparkchain.com/pdf/AllSparkWhitePaperK.pdf"><b>다운로드</b></a><br/>
+                                올스파크 소개 : <a style="color: black;" href="https://m.blog.naver.com/715fas/221304719137"><b>블로그 링크</b></a>
                             </h6>
                         </div>
                         <div class="card-header">
@@ -73,8 +74,8 @@
                         </div>
                         <div class="card-body card-padding">
                             <h6>
-                                1. 참여자 이벤트 : 회원가입 및 신청 후 프리세일(중략)<br/>
-                                2. 추천자 이벤트 : 추천링크를 통해 추천받은사람(중략)<br/>
+                                1. 참여자 이벤트 : 회원가입 및 신청 후 프리세일<br/>
+                                2. 추천자 이벤트 : 추천링크를 통해 추천받은사람<br/>
                                 3. E-mail은 추구 Bounty Program 진행에 사용될 예정이니 정확히 입력 부탁드립니다.<br/>
                                 4. 조건확인 및 문의<br/>
                                 공식(한국) <a style="color: black;"
@@ -128,11 +129,7 @@
 
 <!-- footer start -->
 <footer id="footer">
-    Copyright &copy; 푸터
-    <ul class="f-menu">
-        <li><a href="">메인</a></li>
-        <li><a href="">who we are</a></li>
-    </ul>
+    Copyright &copy;Bitcoin Korea
 </footer>
 <!-- footer end -->
 
