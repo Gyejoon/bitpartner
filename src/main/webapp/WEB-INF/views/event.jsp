@@ -1,3 +1,5 @@
+<%@ taglib prefix="margin-right" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="margin-bottom" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <!--[if IE 9 ]><html class="ie9"><![endif]-->
@@ -6,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="theme-color" content="#fec108">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AllSpark EVNET</title>
+    <title>AllSpark EVENT</title>
 
     <!-- favicon -->
     <link rel="icon" href="/img/logo/allspark_favicon.png"/>
@@ -25,7 +27,7 @@
 </head>
 <body>
 <!-- header start -->
-<header id="header" style="z-index : 99999;">
+<header id="header">
     <!-- header inner start -->
     <ul class="header-inner">
         <!-- title logo start -->
@@ -58,11 +60,13 @@
                                 4. 프리세일 가격 : <b>1 ETH = 3750 ASK (20% 할인)</b><br/>
                                 5. 참여단위 : <b>MIN 50 ETH, MAX 2,000 ETH</b><br/>
                                 6. 링크<br/>
-                                공식페이지 : <a style="color: black;" href="http://www.allsparkchain.com"><b>올스파크 홈페이지로 가기</b></a><br/>
+                                공식페이지 : <a style="color: black;"
+                                           href="http://www.allsparkchain.com"><b>올스파크 홈페이지로 가기</b></a><br/>
                                 백서(영문) : <a style="color: black;"
-                                             href="http://allsparkchain.com/pdf/AllSparkWhitePaper.pdf"><b>다운로드</b></a><br/>
+                                            href="http://allsparkchain.com/pdf/AllSparkWhitePaper.pdf"><b>다운로드</b></a><br/>
                                 백서(한글) : <a style="color: black;"
-                                             href="http://www.allsparkchain.com/pdf/AllSparkWhitePaperK.pdf"><b>다운로드</b></a><br/>
+                                            href="http://www.allsparkchain.com/pdf/AllSparkWhitePaperK.pdf"><b>다운로드</b></a><br/>
+                                올스파크 소개 : <a style="color: black;" href="https://m.blog.naver.com/715fas/221304719137"><b>블로그 링크</b></a>
                             </h6>
                         </div>
                         <div class="card-header">
@@ -70,22 +74,25 @@
                         </div>
                         <div class="card-body card-padding">
                             <h6>
-                                1. 참여자 이벤트 : 회원가입 및 신청 후 프리세일(중략)<br/>
-                                2. 추천자 이벤트 : 추천링크를 통해 추천받은사람(중략)<br/>
+                                1. 참여자 이벤트 : 회원가입 및 신청 후 프리세일<br/>
+                                2. 추천자 이벤트 : 추천링크를 통해 추천받은사람<br/>
                                 3. E-mail은 추구 Bounty Program 진행에 사용될 예정이니 정확히 입력 부탁드립니다.<br/>
                                 4. 조건확인 및 문의<br/>
-                                공식(한국) <a style="color: black;" href="https://t.me/allspark_korea"><b>텔레그램으로 이동</b></a><br/>
-                                이메일 : <a style="color: black;" href="mailto:bitpartnerkorea@gmail.com"><b>bitpartnerkorea@gmail.com</b></a>
+                                공식(한국) <a style="color: black;"
+                                          href="https://t.me/allspark_korea"><b>텔레그램으로
+                                이동</b></a><br/>
+                                이메일 : <a style="color: black;"
+                                         href="mailto:bitpartnerkorea@gmail.com"><b>bitpartnerkorea@gmail.com</b></a>
                             </h6>
                         </div>
                         <div class="card-header">
                             <h2><b>[신청 및 추천하기]</b></h2>
                         </div>
                         <div class="card-body card-padding">
-                            <button class="btn btn-default" data-toggle="modal" href="#applyModal">
+                            <button style="margin-left: 1em; margin-bottom: 1em;" class="btn btn-default" data-toggle="modal" href="#applyModal">
                                 신청하기
                             </button>
-                            <button style="margin-left: 0.5em;" class="btn btn-default"
+                            <button style="margin-left: 0.5em; margin-bottom: 1em;" class="btn btn-default"
                                     data-toggle="modal" href="#recomModal">추천하기
                             </button>
                             <div>
@@ -103,9 +110,9 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-body card-padding">
-                        <div>
-                            <img width="100%" src="/img/intro/intro.png" alt="소개 이미지">
-                        </div>
+                            <div>
+                                <img width="100%" src="/img/intro/intro.png" alt="소개 이미지">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -116,15 +123,13 @@
 </section>
 <!-- main end -->
 
+<a href="https://t.me/allspark_korea">
+    <img src="/img/logo/telegram_logo.png" class="float-button">
+</a>
 
 <!-- footer start -->
 <footer id="footer">
-    Copyright &copy; 푸터
-
-    <ul class="f-menu">
-        <li><a href="">메인</a></li>
-        <li><a href="">who we are</a></li>
-    </ul>
+    Copyright &copy;Bitcoin Korea
 </footer>
 <!-- footer end -->
 
