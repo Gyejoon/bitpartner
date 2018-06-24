@@ -6,6 +6,7 @@
             $('form').each(function () {
                 this.reset();
                 $('#returnAjaxForNameUse').empty().css("color", "#000000");
+                $(".certCode").css("display", "block");
             });
         });
     });
@@ -48,6 +49,11 @@
             alert('사용중이지 않은 ID를 입력해주세요!');
             return;
         }
+        if($("#certCheck").val() !== "cert") {
+            alert("이메일 인증을 해주세요.");
+            return;
+        }
+
         const applyForm = document.applyForm;
         const id = applyForm.id.value;
         const pass = applyForm.pass.value;
@@ -93,7 +99,7 @@
                 $("#apply_link").val(resdata.recomUrl).attr("type", "text");
             },
             error: function () {
-                alert("Error");
+                alert("아이디가 없거나, 패스워드가 틀립니다.");
             }
         });
     };
@@ -108,6 +114,88 @@
     const openApplyLink = function () {
         $("#apply_link").attr("type", "text").css("visibility", "visible");
     }
+
+    const certCodeSend = function() {
+        const applyForm = document.applyForm;
+        const email = applyForm.email.value;
+
+        var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+        // 검증에 사용할 정규식 변수 regExp에 저장
+
+        if (email.match(regExp) == null) {
+            alert('이메일 규칙에 맞게 작성해 주십시오.');
+            applyForm.email.focus();
+            return;
+        }
+
+        $.ajax({
+            type: "get",
+            url: "/ico/allspark/recom/emailCheck",
+            contentType: "application/json",
+            data: {
+                email: email
+            },
+            success: function (resdata) {
+                if(!resdata.success) {
+                    alert("이미 사용중인 이메일입니다.");
+                    return;
+                }
+            },
+            error: function () {
+                alert("서버 에러");
+                return;
+            }
+        });
+
+        $.ajax({
+            type: "get",
+            url: "/ico/allspark/recom/certCodeSend",
+            contentType: "application/json",
+            data: {
+                email: email
+            },
+            success: function (resdata) {
+                if(resdata.success) {
+                    $(".certCode").css("display", "block");
+                    alert("인증번호가 전송되었습니다.");
+                } else {
+                    alert("이메일 전송이 실패 하였습니다.");
+                }
+            },
+            error: function (err) {
+                alert("정확한 이메일을 입력해 주세요.");
+            }
+        });
+    }
+
+    const certCodeCheck = function() {
+
+        const applyForm = document.applyForm;
+        const email = applyForm.email.value;
+        const code = applyForm.code.value;
+
+        $.ajax({
+            type: "post",
+            url: "/ico/allspark/recom/certCodeCheck",
+            contentType: "application/json",
+            data: JSON.stringify({
+                email: email,
+                code: code
+            }),
+            success: function(resdata) {
+                if(resdata.success) {
+                    $("#certCheck").val("cert");
+                    alert("인증되었습니다.");
+                }else {
+                    alert("인증번호가 일치하지 않습니다.");
+                }
+            },
+            error: function() {
+                alert("정확한 인증번호를 입력해 주세요.");
+            }
+        })
+    }
+
 </script>
 <form id="applyForm" name="applyForm" method="post">
     <input type="hidden" value="<%=request.getAttribute("recomdId")%>" name="recomMemberId">
@@ -155,11 +243,10 @@
 								<span class="input-group-addon"><i
                                         class="zmdi zmdi-account"></i></span>
                                 <div class="fg-line">
-                                    <input name="repass" type="text" class="form-control"
+                                    <input name="repass" type="password" class="form-control"
                                            placeholder="비밀번호 확인">
                                 </div>
                             </div>
-
                         </div>
                     </div>
                     <div class="row">
@@ -174,7 +261,31 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-xs-6">
+                            <button type="button" class="btn btn-primary"
+                                    onclick="certCodeSend()">인증번호 전송
+                            </button>
+                            <label style="margin-left: 10px;" id=""></label>
+                        </div>
                     </div>
+
+                    <div class="row certCode" style="display: none;">
+                        <div class="col-xs-6">
+                            <div class="fg-line">
+                                <input name="code" minlength="3" maxlength="64" type="text" class="form-control"
+                                       required placeholder="인증번호 입력">
+                            </div>
+                        </div>
+
+                        <div class="col-xs-6">
+                            <button type="button" class="btn btn-primary"
+                                    onclick="certCodeCheck()">인증번호 확인
+                            </button>
+                        </div>
+                    </div>
+
+                    <input type="hidden" id="certCheck" value="">
+
                     <div class="g-recaptcha" data-sitekey="6LfrvV4UAAAAADNtv94xDLTH0ObZOAZfrFpoG3-h"></div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-link" onclick="createMember()">신청완료</button>
