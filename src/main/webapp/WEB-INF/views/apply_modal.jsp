@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script>
     $(function () {
+        $("#loading-image-div").hide();
         $('#applyModal').on('hidden.bs.modal', function () {
             $('form').each(function () {
                 this.reset();
@@ -97,6 +98,8 @@
                 $("#apply_desc").css("display", "block");
                 $("#applyBody").css("display", "none");
                 $("#open_apply_link").css("visibility", "visible");
+                $("#apply_id").html("축하합니다!");
+                $("#_recom_id_").html("추천인 ID : " + resdata.member.memberId);
                 $("#apply_link").val(resdata.recomUrl).attr("type", "text");
             },
             error: function () {
@@ -129,24 +132,8 @@
             return;
         }
 
-        $.ajax({
-            type: "get",
-            url: "/ico/allspark/recom/emailCheck",
-            contentType: "application/json",
-            data: {
-                email: email
-            },
-            success: function (resdata) {
-                if(!resdata.success) {
-                    alert("이미 사용중인 이메일입니다.");
-                    return;
-                }
-            },
-            error: function () {
-                alert("서버 에러");
-                return;
-            }
-        });
+        $("#sendBtn").hide();
+        $("#loading-image-div").show();
 
         $.ajax({
             type: "get",
@@ -159,8 +146,18 @@
                 if(resdata.success) {
                     $(".certCode").css("display", "block");
                     alert("인증번호가 전송되었습니다.");
+                    $("#loading-image-div").hide();
+                    $("#sendBtn").show();
+                    $("#sendBtn").val("인증번호 재전송");
                 } else {
-                    alert("이메일 전송이 실패 하였습니다.");
+                    $("#sendBtn").show();
+                    $("#loading-image-div").hide();
+
+                    if(resdata.duplicate) {
+                        alert("이미 사용중인 이메일 입니다.");
+                    } else {
+                        alert("이메일 전송이 실패 하였습니다.");
+                    }
                 }
             },
             error: function (err) {
@@ -264,10 +261,17 @@
                         </div>
                         <div class="col-xs-6">
                             <button type="button" class="btn btn-primary"
-                                    onclick="certCodeSend()">인증번호 전송
+                                    onclick="certCodeSend()" id="sendBtn">인증번호 전송
                             </button>
+
+                            <div id="loading-image-div" style="margin-left: 15px;">
+                                <img id="loading-image" src="/img/img-loading.gif" alt="Loading..."
+                                     width="32" height="32" />
+                            </div>
+
                             <label style="margin-left: 10px;" id=""></label>
                         </div>
+
                     </div>
 
                     <div class="row certCode" style="display: none;">
@@ -294,7 +298,9 @@
                     </div>
                 </div>
                 <div id="apply_desc" style="display: none" class="modal-body">
-                    <p>ALLspark&nbsp; Korea Special Event 신청을 완료하셨습니다.<br/>추천 Event 혜택도 받아가세요!</p>
+                    <p>ALLspark&nbsp; Korea Special Event 신청을 완료하셨습니다.<br/><br/>추천 Event 혜택도 받아가세요!</p>
+                    <div id="_recom_id_"></div>
+                    <br/>
                 </div>
                 <input type="button" style="visibility: hidden;" class="btn btn-link" id="open_apply_link" value="링크만들기" onclick="openApplyLink()">
                 <input style="visibility: hidden;" type="hidden" id="apply_link" class="btn btn-default btn-block" value="링크" onclick="copyApplyClipboard()"/>

@@ -1,6 +1,7 @@
 package com.bitpartner.allspark.domain;
 
 import com.bitpartner.allspark.Constant;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import sun.misc.BASE64Encoder;
 
 import java.io.Serializable;

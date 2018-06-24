@@ -155,6 +155,18 @@ public class MemberController {
     @ResponseBody
     public Map<String, Object> certCodeSend(@RequestParam("email") String email) {
 
+        Member findedMember = memberService.emailCheck(email);
+
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+
+
+        if(findedMember != null) {
+            resultMap.put("success", false);
+            resultMap.put("duplicate", true);
+
+            return resultMap;
+        }
+
         Random r = new Random();
         int start = 1000;
         int end = 9999;
@@ -202,9 +214,8 @@ public class MemberController {
         );
         mailService.send(mailEntity);
 
-        Map<String, Object> resultMap = new HashMap<>();
-
         resultMap.put("success", true);
+        resultMap.put("duplicate", false);
 
         return resultMap;
     }

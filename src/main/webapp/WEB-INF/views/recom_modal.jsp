@@ -38,7 +38,8 @@
             success : function (resdata) {
                 $("#recom_desc").css("display", "block");
                 $("#recomBody").css("display", "none");
-                $("#recom_id").html('추천인 ID : ' + resdata.member.memberId);
+                $("#recom_id").html("축하합니다!");
+                $("#_recom_id").html("추천인 ID : " + resdata.member.memberId);
                 $("#open_recom_link").css("visibility", "visible");
                 $("#recom_link").val(resdata.recomUrl).attr("type", "text");
             },
@@ -102,7 +103,9 @@
                     </div>
                 </div>
                 <div id="recom_desc" style="display: none" class="modal-body">
-                    <p>ALLSPARK&nbsp;Korea Special Event 신청을 완료하셨습니다.<br/>추천 Event 혜택도 받아가세요!</p>
+                    <p>ALLSPARK&nbsp;Korea Special Event 신청을 완료하셨습니다.<br/><br/>추천 Event 혜택도 받아가세요!</p>
+                    <div id="_recom_id"></div>
+                    <br/>
                 </div>
                 <input type="button" style="visibility: hidden;" class="btn btn-link" id="open_recom_link" value="링크만들기" onclick="openRecomLink()">
                 <input style="visibility: hidden;" type="hidden" id="recom_link" class="btn btn-default btn-block" value="링크" onclick="copyRecomClipboard()"/>
