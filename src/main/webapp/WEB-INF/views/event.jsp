@@ -91,11 +91,11 @@
                         <div class="card-body card-padding">
                             <button style="margin-left: 1em; margin-bottom: 1em; margin-right: 1em;"
                                     class="btn btn-default" data-toggle="modal" href="#applyModal">
-                                회원가입
+                                신청하기
                             </button>
                             <button style="margin-left: 0.5em; margin-bottom: 1em;"
                                     class="btn btn-default"
-                                    data-toggle="modal" href="#recomModal">로그인
+                                    data-toggle="modal" href="#recomModal">추천하기
                             </button>
                             <div>
                                 <%@include file="apply_modal.jsp" %>
