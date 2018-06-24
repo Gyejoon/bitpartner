@@ -294,7 +294,7 @@
                     </div>
                 </div>
                 <div id="apply_desc" style="display: none" class="modal-body">
-                    <p>ALLspark Korea Special Event 신청을 완료하셨습니다.<br/>추천 Event 혜택도 받아가세요!</p>
+                    <p>ALLspark&nbsp; Korea Special Event 신청을 완료하셨습니다.<br/>추천 Event 혜택도 받아가세요!</p>
                 </div>
                 <input type="button" style="visibility: hidden;" class="btn btn-link" id="open_apply_link" value="링크만들기" onclick="openApplyLink()">
                 <input style="visibility: hidden;" type="hidden" id="apply_link" class="btn btn-default btn-block" value="링크" onclick="copyApplyClipboard()"/>

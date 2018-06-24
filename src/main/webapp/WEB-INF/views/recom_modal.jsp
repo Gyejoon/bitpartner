@@ -102,7 +102,7 @@
                     </div>
                 </div>
                 <div id="recom_desc" style="display: none" class="modal-body">
-                    <p>ALLspark Korea Special Event 신청을 완료하셨습니다.<br/>추천 Event 혜택도 받아가세요!</p>
+                    <p>ALLSPARK&nbsp;Korea Special Event 신청을 완료하셨습니다.<br/>추천 Event 혜택도 받아가세요!</p>
                 </div>
                 <input type="button" style="visibility: hidden;" class="btn btn-link" id="open_recom_link" value="링크만들기" onclick="openRecomLink()">
                 <input style="visibility: hidden;" type="hidden" id="recom_link" class="btn btn-default btn-block" value="링크" onclick="copyRecomClipboard()"/>
