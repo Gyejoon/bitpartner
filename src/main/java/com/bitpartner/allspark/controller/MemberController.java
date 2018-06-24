@@ -3,19 +3,12 @@ package com.bitpartner.allspark.controller;
 import com.bitpartner.allspark.Constant;
 import com.bitpartner.allspark.domain.Member;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import com.bitpartner.allspark.service.MemberService;
-import com.sun.istack.internal.Nullable;
-
-import org.springframework.web.servlet.ModelAndView;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.HashMap;
@@ -72,9 +65,10 @@ public class MemberController {
 		String encodedId = base64Encoder.encode((insertedMember.getMemberId() + Constant.CERT_KEY).getBytes());
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		resultMap.put("member", insertedMember);
-		resultMap.put("recomUrl", Constant.EVENT_URL + "?recomdId=" + encodedId);
 
+		String recomUrl = Constant.EVENT_URL + "?recomdId=" + encodedId;
+		resultMap.put("member", insertedMember);
+		resultMap.put("recomUrl", recomUrl.toLowerCase());
 		return resultMap;
 	}
 
@@ -91,8 +85,9 @@ public class MemberController {
 		String encodedId = base64Encoder.encode( (finededMember.getMemberId() + Constant.CERT_KEY).getBytes());
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 
+		String recomUrl = Constant.EVENT_URL + "?recomdId=" + encodedId;
 		resultMap.put("member", finededMember);
-		resultMap.put("recomUrl", Constant.EVENT_URL + "?recomdId=" + encodedId);
+		resultMap.put("recomUrl", recomUrl.toLowerCase());
 
 		return resultMap;
 	}

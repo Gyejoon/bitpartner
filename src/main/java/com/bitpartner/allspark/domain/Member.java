@@ -34,6 +34,11 @@ public class Member implements Serializable {
 
 	// 추천인 memberId
 	private String recomMemberId;
+
+	// 메일 인증 확인
+	@Column(name = "mailCert", nullable = false, columnDefinition = "tinyint(1) default 0")
+	private int mailCert;
+
 	
     @PrePersist
     void preInsert() {
@@ -88,4 +93,11 @@ public class Member implements Serializable {
 		this.recomMemberId = recomMemberId;
 	}
 
+	public int getMailCert() {
+		return mailCert;
+	}
+
+	public void setMailCert(int mailCert) {
+		this.mailCert = mailCert;
+	}
 }

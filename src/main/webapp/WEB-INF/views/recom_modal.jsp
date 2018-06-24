@@ -34,11 +34,11 @@
                 recomMemberId : recomId
             }),
             success : function (resdata) {
-                /*alert(result);
-                $('#applyModal').modal('hide');*/
+                $("#recom_desc").css("display", "block");
                 $("#recomBody").css("display", "none");
-                $("#recom_link").val(resdata.recomUrl).attr("type", "text").css("visibility", "visible");
-                $("#recom_id").html('추천 ID : ' + resdata.member.memberId);
+                $("#recom_id").html('추천인 ID : ' + resdata.member.memberId);
+                $("#open_recom_link").css("visibility", "visible");
+                $("#recom_link").val(resdata.recomUrl).attr("type", "text");
             },
             error : function() {
                 alert("Error");
@@ -50,15 +50,18 @@
         $('#recom_link').select();
         document.execCommand("copy");
         $('#recomModal').modal('hide');
+        alert("링크가 복사되었습니다.");
     }
 
+    const openRecomLink = function () {
+        $("#recom_link").attr("type", "text").css("visibility", "visible");
+    }
 </script>
 <form name="recomForm" method="post">
     <input type="hidden" value="<%=request.getAttribute("recomdId")%>" name="recomMemberId">
-    <div class="modal fade" id="recomModal" tabindex="-1" role="dialog"
-         aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
+    <div class="modal fade" id="recomModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content card-deco">
                 <div class="modal-header">
                     <h4 id="recom_id" class="modal-title">로그인</h4>
                 </div>
@@ -83,7 +86,7 @@
 								<span class="input-group-addon"><i
                                         class="zmdi zmdi-account"></i></span>
                                 <div class="fg-line">
-                                    <input name="pass" type="text" class="form-control"
+                                    <input name="pass" type="password" class="form-control"
                                            placeholder="비밀번호 입력">
                                 </div>
                             </div>
@@ -96,6 +99,10 @@
                         <button type="button" class="btn btn-link" data-dismiss="modal">닫기</button>
                     </div>
                 </div>
+                <div id="recom_desc" style="display: none" class="modal-body">
+                    <p>ALLspark Korea Special Event 신청을 완료하셨습니다.<br/>추천 Event 혜택도 받아가세요!</p>
+                </div>
+                <input type="button" style="visibility: hidden;" class="btn btn-link" id="open_recom_link" value="링크만들기" onclick="openRecomLink()">
                 <input style="visibility: hidden;" type="hidden" id="recom_link" class="btn btn-default btn-block" value="링크" onclick="copyRecomClipboard()"/>
             </div>
         </div>
