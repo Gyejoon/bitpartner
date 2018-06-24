@@ -9188,6 +9188,7 @@ a.lv-footer:hover {
 @media screen and (max-width: 991px) {
   .card .card-body.card-padding {
     padding: 5px;
+    padding-bottom: 40px;
   }
 }
 .card .card-body.card-padding-sm {
@@ -12560,6 +12561,12 @@ body.login-content:before {
   #profile-main .pmo-pic .pmo-stat {
     background: #ffc107;
     padding-bottom: 15px;
+  }
+}
+
+@media (max-width: 767px) {
+  .btn-default{
+    float: right;
   }
 }
 #profile-main .pmo-pic .pmop-edit {

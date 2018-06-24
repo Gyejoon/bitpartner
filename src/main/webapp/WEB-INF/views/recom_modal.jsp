@@ -10,32 +10,32 @@
     });
 
     const loginMember = function () {
-      const recomForm = document.recomForm;
-      const id = recomForm.id.value;
-      const pass = recomForm.pass.value;
-      const recomId = recomForm.recomMemberId.value;
-      if(id == "") {
-          alert("ID를 입력해주세요!");
-          return;
-      }
-      if(pass == ""){
-          alert("비밀번호를 입력해주세요!");
-          return;
-      }
-      AjaxForLogin(id, pass, recomId);
+        const recomForm = document.recomForm;
+        const id = recomForm.id.value;
+        const pass = recomForm.pass.value;
+        const recomId = recomForm.recomMemberId.value;
+        if (id == "") {
+            alert("ID를 입력해주세요!");
+            return;
+        }
+        if (pass == "") {
+            alert("비밀번호를 입력해주세요!");
+            return;
+        }
+        AjaxForLogin(id, pass, recomId);
     };
 
     const AjaxForLogin = function (id, pass, recomId) {
         $.ajax({
-            type : "post",
-            url : "/ico/allspark/recom/recommend",
+            type: "post",
+            url: "/ico/allspark/recom/recommend",
             contentType: "application/json",
-            data : JSON.stringify({
-                memberId : id,
-                memberPassword : pass,
-                recomMemberId : recomId
+            data: JSON.stringify({
+                memberId: id,
+                memberPassword: pass,
+                recomMemberId: recomId
             }),
-            success : function (resdata) {
+            success: function (resdata) {
                 $("#recom_desc").css("display", "block");
                 $("#recomBody").css("display", "none");
                 $("#recom_id").html("축하합니다!");
@@ -43,7 +43,7 @@
                 $("#open_recom_link").css("visibility", "visible");
                 $("#recom_link").val(resdata.recomUrl).attr("type", "text");
             },
-            error : function() {
+            error: function () {
                 alert("아이디가 없거나, 패스워드가 틀립니다.");
             }
         });
@@ -67,6 +67,12 @@
             <div class="modal-content card-deco">
                 <div class="modal-header">
                     <h4 id="recom_id" class="modal-title">로그인</h4>
+                    <br/>
+                    <small>
+                        <b>1.추천링크 생성을 위해 로그인을 해주세요.</b><br/>
+                        <b>2.아이디가 없으신 경우 신청하기를 통해 회원가입 후 진행해주세요.</b>
+                    </small>
+
                 </div>
                 <div id="recomBody" class="modal-body">
                     <div class="row">
@@ -97,18 +103,24 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-link" onclick="loginMember()">추천완료
+                        <button type="button" class="btn btn-link" onclick="loginMember()">로그인
                         </button>
                         <button type="button" class="btn btn-link" data-dismiss="modal">닫기</button>
                     </div>
                 </div>
                 <div id="recom_desc" style="display: none" class="modal-body">
-                    <p>ALLSPARK&nbsp;Korea Special Event 신청을 완료하셨습니다.<br/><br/>추천 Event 혜택도 받아가세요!</p>
+                    <p>ALLSPARK&nbsp;Korea Special Event 신청을 완료하셨습니다.<br/><br/>추천 Event 혜택도 받아가세요!
+                    </p>
                     <div id="_recom_id"></div>
                     <br/>
                 </div>
-                <input type="button" style="visibility: hidden;" class="btn btn-link" id="open_recom_link" value="링크만들기" onclick="openRecomLink()">
-                <input style="visibility: hidden;" type="hidden" id="recom_link" class="btn btn-default btn-block" value="링크" onclick="copyRecomClipboard()"/>
+                <div class="modal-footer">
+                    <input type="button" style="visibility: hidden;" class="btn btn-link"
+                           id="open_recom_link" value="링크만들기" onclick="openRecomLink()">
+                    <input style="visibility: hidden;" type="hidden" id="recom_link"
+                           class="btn btn-default btn-block" value="링크"
+                           onclick="copyRecomClipboard()"/>
+                </div>
             </div>
         </div>
 </form>

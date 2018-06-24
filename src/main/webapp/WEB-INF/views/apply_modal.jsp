@@ -51,7 +51,7 @@
             alert('사용중이지 않은 ID를 입력해주세요!');
             return;
         }
-        if($("#certCheck").val() !== "cert") {
+        if ($("#certCheck").val() !== "cert") {
             alert("이메일 인증을 해주세요.");
             return;
         }
@@ -92,7 +92,7 @@
                 memberId: id,
                 memberPassword: pass,
                 memberEmail: email,
-                recomMemberId : recomId
+                recomMemberId: recomId
             }),
             success: function (resdata) {
                 $("#apply_desc").css("display", "block");
@@ -119,7 +119,7 @@
         $("#apply_link").attr("type", "text").css("visibility", "visible");
     }
 
-    const certCodeSend = function() {
+    const certCodeSend = function () {
         const applyForm = document.applyForm;
         const email = applyForm.email.value;
 
@@ -143,7 +143,7 @@
                 email: email
             },
             success: function (resdata) {
-                if(resdata.success) {
+                if (resdata.success) {
                     $(".certCode").css("display", "block");
                     alert("인증번호가 전송되었습니다.");
                     $("#loading-image-div").hide();
@@ -153,7 +153,7 @@
                     $("#sendBtn").show();
                     $("#loading-image-div").hide();
 
-                    if(resdata.duplicate) {
+                    if (resdata.duplicate) {
                         alert("이미 사용중인 이메일 입니다.");
                     } else {
                         alert("이메일 전송이 실패 하였습니다.");
@@ -166,7 +166,7 @@
         });
     }
 
-    const certCodeCheck = function() {
+    const certCodeCheck = function () {
 
         const applyForm = document.applyForm;
         const email = applyForm.email.value;
@@ -180,15 +180,15 @@
                 email: email,
                 code: code
             }),
-            success: function(resdata) {
-                if(resdata.success) {
+            success: function (resdata) {
+                if (resdata.success) {
                     $("#certCheck").val("cert");
                     alert("인증되었습니다.");
-                }else {
+                } else {
                     alert("인증번호가 일치하지 않습니다.");
                 }
             },
-            error: function() {
+            error: function () {
                 alert("정확한 인증번호를 입력해 주세요.");
             }
         })
@@ -202,7 +202,7 @@
         <div class="modal-dialog">
             <div class="modal-content card-deco">
                 <div class="modal-header">
-                    <h4 id="apply_id" class="modal-title">회원가입</h4>
+                    <h4 id="apply_id" class="modal-title">가입 및 신청하기</h4>
                 </div>
                 <div id="applyBody" class="modal-body">
                     <div class="row">
@@ -254,8 +254,10 @@
 								<span class="input-group-addon"><i
                                         class="zmdi zmdi-email"></i></span>
                                 <div class="fg-line">
-                                    <input name="email" minlength="3" maxlength="64" type="email" class="form-control"
-                                           required placeholder="username@example.com" placeholder="이메일 입력" pattern=".+@+.">
+                                    <input name="email" minlength="3" maxlength="64" type="email"
+                                           class="form-control"
+                                           required placeholder="username@example.com"
+                                           placeholder="이메일 입력" pattern=".+@+.">
                                 </div>
                             </div>
                         </div>
@@ -266,7 +268,7 @@
 
                             <div id="loading-image-div" style="margin-left: 15px;">
                                 <img id="loading-image" src="/img/img-loading.gif" alt="Loading..."
-                                     width="32" height="32" />
+                                     width="32" height="32"/>
                             </div>
 
                             <label style="margin-left: 10px;" id=""></label>
@@ -277,7 +279,8 @@
                     <div class="row certCode" style="display: none;">
                         <div class="col-xs-6">
                             <div class="fg-line">
-                                <input name="code" minlength="3" maxlength="64" type="text" class="form-control"
+                                <input name="code" minlength="3" maxlength="64" type="text"
+                                       class="form-control"
                                        required placeholder="인증번호 입력">
                             </div>
                         </div>
@@ -291,19 +294,27 @@
 
                     <input type="hidden" id="certCheck" value="">
 
-                    <div class="g-recaptcha" data-sitekey="6LfrvV4UAAAAADNtv94xDLTH0ObZOAZfrFpoG3-h"></div>
+                    <div class="g-recaptcha"
+                         data-sitekey="6LfrvV4UAAAAADNtv94xDLTH0ObZOAZfrFpoG3-h"></div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-link" onclick="createMember()">신청완료</button>
+                        <button type="button" class="btn btn-link" onclick="createMember()">신청완료
+                        </button>
                         <button type="button" class="btn btn-link" data-dismiss="modal">닫기</button>
                     </div>
                 </div>
                 <div id="apply_desc" style="display: none" class="modal-body">
-                    <p>ALLspark&nbsp; Korea Special Event 신청을 완료하셨습니다.<br/><br/>추천 Event 혜택도 받아가세요!</p>
+                    <p>ALLspark&nbsp; Korea Special Event 신청을 완료하셨습니다.<br/><br/>추천 Event 혜택도 받아가세요!
+                    </p>
                     <div id="_recom_id_"></div>
                     <br/>
                 </div>
-                <input type="button" style="visibility: hidden;" class="btn btn-link" id="open_apply_link" value="링크만들기" onclick="openApplyLink()">
-                <input style="visibility: hidden;" type="hidden" id="apply_link" class="btn btn-default btn-block" value="링크" onclick="copyApplyClipboard()"/>
+                <div class="modal-footer">
+                    <input type="button" style="visibility: hidden;" class="btn btn-link"
+                           id="open_apply_link" value="링크만들기" onclick="openApplyLink()">
+                    <input style="visibility: hidden;" type="hidden" id="apply_link"
+                           class="btn btn-default btn-block" value="링크"
+                           onclick="copyApplyClipboard()"/>
+                </div>
             </div>
         </div>
 </form>
