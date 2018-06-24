@@ -94,7 +94,7 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-link" onclick="loginMember()">신청완료
+                        <button type="button" class="btn btn-link" onclick="loginMember()">추천완료
                         </button>
                         <button type="button" class="btn btn-link" data-dismiss="modal">닫기</button>
                     </div>
