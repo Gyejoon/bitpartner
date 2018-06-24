@@ -39,5 +39,10 @@ public class MemberServiceImpl implements MemberService {
         return memberRepository.findByMemberId(memberId);
     }
 
+    @Override
+    public Member emailCheck(String email) {
+        return memberRepository.emailCheck(email);
+    }
+
 
 }

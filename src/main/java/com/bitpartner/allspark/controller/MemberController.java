@@ -126,6 +126,27 @@ public class MemberController {
         return resultMap;
     }
 
+
+    @GetMapping("/emailCheck")
+    @ResponseBody
+    public Map<String, Object> emailCheck(@RequestParam("email") String email) {
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+
+        Member findedMember = memberService.emailCheck(email);
+
+        if (findedMember != null) {
+            resultMap.put("success", false);
+            resultMap.put("code", Constant.IS_USED_FAILED_CODE);
+            resultMap.put("msg", Constant.IS_USED_FAILED);
+        } else {
+            resultMap.put("success", true);
+            resultMap.put("code", Constant.IS_USED_SUCCESS_CODE);
+            resultMap.put("msg", Constant.IS_USED_SUCCESS);
+        }
+
+        return resultMap;
+    }
+
     /**
      * 이메일 인증코드 발송
      */
