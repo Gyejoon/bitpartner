@@ -11081,6 +11081,17 @@ html:not(.ie9) .select.fg-line:before {
 .input-group-addon {
   border-width: 0px 0px 1px 0px;
 }
+
+.float-button{
+  width: 60px;
+  height: 60px;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  margin-right: 2em;
+  margin-bottom: 2em;
+}
+
 /*
  * Input Feilds
  */

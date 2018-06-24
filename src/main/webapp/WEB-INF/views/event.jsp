@@ -1,3 +1,5 @@
+<%@ taglib prefix="margin-right" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="margin-bottom" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <!--[if IE 9 ]><html class="ie9"><![endif]-->
@@ -58,11 +60,12 @@
                                 4. 프리세일 가격 : <b>1 ETH = 3750 ASK (20% 할인)</b><br/>
                                 5. 참여단위 : <b>MIN 50 ETH, MAX 2,000 ETH</b><br/>
                                 6. 링크<br/>
-                                공식페이지 : <a style="color: black;" href="http://www.allsparkchain.com"><b>올스파크 홈페이지로 가기</b></a><br/>
+                                공식페이지 : <a style="color: black;"
+                                           href="http://www.allsparkchain.com"><b>올스파크 홈페이지로 가기</b></a><br/>
                                 백서(영문) : <a style="color: black;"
-                                             href="http://allsparkchain.com/pdf/AllSparkWhitePaper.pdf"><b>다운로드</b></a><br/>
+                                            href="http://allsparkchain.com/pdf/AllSparkWhitePaper.pdf"><b>다운로드</b></a><br/>
                                 백서(한글) : <a style="color: black;"
-                                             href="http://www.allsparkchain.com/pdf/AllSparkWhitePaperK.pdf"><b>다운로드</b></a><br/>
+                                            href="http://www.allsparkchain.com/pdf/AllSparkWhitePaperK.pdf"><b>다운로드</b></a><br/>
                             </h6>
                         </div>
                         <div class="card-header">
@@ -74,8 +77,11 @@
                                 2. 추천자 이벤트 : 추천링크를 통해 추천받은사람(중략)<br/>
                                 3. E-mail은 추구 Bounty Program 진행에 사용될 예정이니 정확히 입력 부탁드립니다.<br/>
                                 4. 조건확인 및 문의<br/>
-                                공식(한국) <a style="color: black;" href="https://t.me/allspark_korea"><b>텔레그램으로 이동</b></a><br/>
-                                이메일 : <a style="color: black;" href="mailto:bitpartnerkorea@gmail.com"><b>bitpartnerkorea@gmail.com</b></a>
+                                공식(한국) <a style="color: black;"
+                                          href="https://t.me/allspark_korea"><b>텔레그램으로
+                                이동</b></a><br/>
+                                이메일 : <a style="color: black;"
+                                         href="mailto:bitpartnerkorea@gmail.com"><b>bitpartnerkorea@gmail.com</b></a>
                             </h6>
                         </div>
                         <div class="card-header">
@@ -103,9 +109,9 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-body card-padding">
-                        <div>
-                            <img width="100%" src="/img/intro/intro.png" alt="소개 이미지">
-                        </div>
+                            <div>
+                                <img width="100%" src="/img/intro/intro.png" alt="소개 이미지">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -116,11 +122,13 @@
 </section>
 <!-- main end -->
 
+<a href="https://t.me/allspark_korea">
+    <img src="/img/logo/telegram_logo.png" class="float-button">
+</a>
 
 <!-- footer start -->
 <footer id="footer">
     Copyright &copy; 푸터
-
     <ul class="f-menu">
         <li><a href="">메인</a></li>
         <li><a href="">who we are</a></li>
