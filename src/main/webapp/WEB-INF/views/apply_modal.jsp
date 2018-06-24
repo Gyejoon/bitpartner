@@ -6,7 +6,7 @@
             $('form').each(function () {
                 this.reset();
                 $('#returnAjaxForNameUse').empty().css("color", "#000000");
-                $(".certCode").css("display", "block");
+                $(".certCode").css("display", "none");
             });
         });
     });
