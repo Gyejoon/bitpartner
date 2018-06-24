@@ -89,10 +89,10 @@
                             <h2><b>[신청 및 추천하기]</b></h2>
                         </div>
                         <div class="card-body card-padding">
-                            <button class="btn btn-default" data-toggle="modal" href="#applyModal">
+                            <button style="margin-left: 1em; margin-bottom: 1em;" class="btn btn-default" data-toggle="modal" href="#applyModal">
                                 신청하기
                             </button>
-                            <button style="margin-left: 0.5em;" class="btn btn-default"
+                            <button style="margin-left: 0.5em; margin-bottom: 1em;" class="btn btn-default"
                                     data-toggle="modal" href="#recomModal">추천하기
                             </button>
                             <div>
