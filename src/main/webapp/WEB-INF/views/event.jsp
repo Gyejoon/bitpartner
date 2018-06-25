@@ -54,39 +54,93 @@
                         </div>
                         <div class="card-body card-padding">
                             <h4>
-                                1. 참여자 이벤트 : 회원가입 및 신청 후 프리세일<br/>
-                                2. 추천자 이벤트 : 추천링크를 통해 추천받은사람<br/>
-                                3. E-mail은 추구 이벤트 진행에 사용될 예정이니 정확히(1인 1계정) 입력 부탁드립니다.<br/>
-                                4. 조건확인 및 문의<br/>
-                                - 공식(한국) <a style="color: black;"
-                                          href="https://t.me/allspark_korea"><b>텔레그램 참여하기</b></a><br/>
-                                - 이메일 : <a style="color: black;"
-                                         href="mailto:bitpartnerkorea@gmail.com"><b>bitpartnerkorea@gmail.com</b></a>
+                                1. 참여자 혜택 : “Korea Special Event”를 신청한 자에게 해당되는 혜택<br/>
+                                2. 추천자 혜택 : “Korea Special Event”를 추천한 자에게 해당되는 혜택<br/>
+                                3. 세부내용 : <br/>
+                            </h4>
+                            <table class="table table-bordered table-sm table-responsive" style="margin:auto;text-align: center;">
+                                <thead>
+                                <tr>
+                                    <th scope="col"><b>혜택</b></th>
+                                    <th scope="col"><b>프리세일(~2018.7.15)</b></th>
+                                    <th scope="col"><b>퍼블릭세일(2018.7.23~8.15)</b></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <th scope="row"><b>참여자</b></th>
+                                    <td colspan="2">ICO 참여 ETH의 1%</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><b>추천자</b></th>
+                                    <td>추천받은 프리세일 참여자 수 x 0.1ETH (50ETH 이상 참여자)</td>
+                                    <td>추천받은 퍼블릭세일 참여자 수 x 0.1ETH (10ETH 이상 참여자)</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <h4>
+                                4. 조건 및 마케팅 문의<br/>
+                                - 공식(한국) <a style="color: black;" href="https://t.me/allspark_korea"><b>텔레그램 참여하기</b></a><br/>
+                                - 이메일 : <a style="color: black;" href="mailto:bitpartnerkorea@gmail.com"><b>bitpartnerkorea@gmail.com</b></a><br/>
+                                <small>
+                                    ※ 모든 혜택은 “Allspark 한국(공식)텔레그램” 참여 조건입니다.<br/>
+                                    ※ 회원가입(이메일)은 추후 이벤트 진행에 사용될 예정이니 정확히 입력 부탁드립니다.<br/>
+                                    ※ “Allspark 공식홈페이지”를 통해 ICO참여시에만 이벤트 혜택이 적용됩니다.<br/>
+                                    ※ 이벤트 혜택은 퍼블릭세일 종료 후 본인인증 완료 후 일괄 지급됩니다. (추후 공지)<br/>
+                                </small>
                             </h4>
                         </div>
                         <div class="card-header">
-                            <h2><b>[Allspark ICO 프리세일 공지]</b></h2>
+                            <h2><b>[Allspark ICO 소개]</b></h2>
                         </div>
                         <div class="card-body card-padding">
                             <h4>
-                                1. 심볼 : ASK (Wanchain Dapp)<br/>
-                                2. 기간 : ~ 07월 15일 23:59 (이후 퍼블릭 전환)<br/>
-                                3. 퍼블릭 가격: <b>1 ETH = 3000 ASK</b><br/>
-                                4. 프리세일 가격 : <b>1 ETH = 3750 ASK (20% 할인)</b><br/>
-                                5. 참여단위 : <b>MIN 50 ETH, MAX 2,000 ETH</b><br/>
-                                6. 링크<br/>
-                                - 공식페이지 : <a style="color: black;"
-                                           href="http://www.allsparkchain.com"><b>올스파크 홈페이지로 가기</b></a><br/>
-                                - 백서(영문) : <a style="color: black;"
-                                            href="http://allsparkchain.com/pdf/AllSparkWhitePaper.pdf"><b>다운로드</b></a><br/>
+                                1. 심볼 : ASK (Allspark)<br/>
+                                2. 특징 : 컨텐츠거래플랫폼, Wanchain Dapp<br/>
+                                3. 조건 :<br/>
+                            </h4>
+                            <table class="table table-bordered table-sm table-responsive" style="margin:auto;text-align: center;">
+                                <thead>
+                                <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col"><b>프리세일</b></th>
+                                    <th scope="col"><b>퍼블릭세일</b></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <th scope="row"><b>기간</b></th>
+                                    <td>~ 2018.7.15</td>
+                                    <td>2018.7.23 ~ 8.15</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><b>혜택</b></th>
+                                    <td>20% Discount</td>
+                                    <td>5~10% Discount</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><b>조건</b></th>
+                                    <td>1ETH = 3,750ASK (할인적용) (MIN 50 ETH, MAX 2,000 ETH)</td>
+                                    <td>1ETH = 3,000ASK</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <h4>
+                                4. 소개<br/>
+                                - Allspark 공식홈페이지 : <a style="color: black;" href="http://www.allsparkchain.com"><b>홈페이지로 가기</b></a><br/>
+                                - Allspark 소개블로그 : <a style="color: black;" href="https://m.blog.naver.com/715fas/221304719137"><b>소개 블로그로 가기</b></a><br/>
                                 - 백서(한글) : <a style="color: black;"
-                                            href="http://www.allsparkchain.com/pdf/AllSparkWhitePaperK.pdf"><b>다운로드</b></a><br/>
-                                - 올스파크 소개 : <a style="color: black;"
-                                             href="https://m.blog.naver.com/715fas/221304719137"><b>소개 블로그로 가기</b></a>
+                                              href="http://www.allsparkchain.com/pdf/AllSparkWhitePaperK.pdf"><b>다운로드</b></a><br/>
+                                - 백서(영문) : <a style="color: black;"
+                                              href="http://allsparkchain.com/pdf/AllSparkWhitePaper.pdf"><b>다운로드</b></a><br/>
+                                <small>
+                                    ※ ICO관련 세부정보는 “Allspark 공식홈페이지”의 “ICO PLAN”을 “반드시” 확인하세요<br/>
+                                    ※ “Allspark”의 ICO정책에 대해서는 “bitpartner”가 책임지지 않습니다.
+                                </small>
                             </h4>
                         </div>
                         <div class="card-header">
-                            <h2><b>[신청 및 추천하기]</b></h2>
+                            <h2><b>[이벤트신청 및 추천하기]</b></h2>
                         </div>
                         <div class="card-body card-padding">
                             <button style="margin-left: 1em; margin-bottom: 1em; margin-right: 1em;"
