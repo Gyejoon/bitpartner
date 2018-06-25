@@ -309,7 +309,7 @@
                     <br/>
                 </div>
                 <div class="modal-footer">
-                    <input type="button" style="visibility: hidden;" class="btn btn-link"
+                    <input type="button" style="visibility: hidden;" class="btn bgm-bluegray"
                            id="open_apply_link" value="링크만들기" onclick="openApplyLink()">
                     <input style="visibility: hidden;" type="hidden" id="apply_link"
                            class="btn btn-default btn-block" value="링크"
