@@ -36,6 +36,7 @@
                 recomMemberId: recomId
             }),
             success: function (resdata) {
+                $("#before_noti").css("display", "none");
                 $("#recom_desc").css("display", "block");
                 $("#recomBody").css("display", "none");
                 $("#recom_id").html("축하합니다!");
@@ -68,10 +69,12 @@
                 <div class="modal-header">
                     <h4 id="recom_id" class="modal-title">로그인</h4>
                     <br/>
-                    <small>
-                        <b>1.추천링크 생성을 위해 로그인을 해주세요.</b><br/>
-                        <b>2.아이디가 없으신 경우 신청하기를 통해 회원가입 후 진행해주세요.</b>
-                    </small>
+                    <div id="before_noti">
+                        <small>
+                            <b>1.추천링크 생성을 위해 로그인을 해주세요.</b><br/>
+                            <b>2.아이디가 없으신 경우 신청하기를 통해 회원가입 후 진행해주세요.</b>
+                        </small>
+                    </div>
 
                 </div>
                 <div id="recomBody" class="modal-body">
@@ -115,7 +118,7 @@
                     <br/>
                 </div>
                 <div class="modal-footer">
-                    <input type="button" style="visibility: hidden;" class="btn btn-link"
+                    <input type="button" style="visibility: hidden;" class="btn bgm-bluegray"
                            id="open_recom_link" value="링크만들기" onclick="openRecomLink()">
                     <input style="visibility: hidden;" type="hidden" id="recom_link"
                            class="btn btn-default btn-block" value="링크"
