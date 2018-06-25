@@ -50,15 +50,16 @@
                 <div class="col-sm-12">
                     <div class="card-deco card">
                         <div class="card-header">
-                            <h2><b>[Allspark Korea Speacial event]</b></h2>
+                            <button style="font-size: 12pt" class="btn bgm-bluegray"><b>Allspark Korea Special event</b></button>
                         </div>
                         <div class="card-body card-padding">
                             <h4>
-                                1. 참여자 혜택 : “Korea Special Event”를 신청한 자에게 해당되는 혜택<br/>
-                                2. 추천자 혜택 : “Korea Special Event”를 추천한 자에게 해당되는 혜택<br/>
+                                1. 참여자 혜택 : 이벤트를 신청한 자에게 주는 혜택<br/>
+                                2. 추천자 혜택 : 이벤트를 추천한 자에게 주는 혜택<br/>
                                 3. 세부내용 : <br/>
                             </h4>
-                            <table class="table table-bordered table-sm table-responsive" style="margin:auto;text-align: center;">
+                            <img width="100%" src="/img/desc/desc1.png">
+                            <%--<table class="table table-bordered table-sm table-responsive" style="margin:auto;text-align: center;">
                                 <thead>
                                 <tr>
                                     <th scope="col"><b>혜택</b></th>
@@ -77,7 +78,7 @@
                                     <td>추천받은 퍼블릭세일 참여자 수 x 0.1ETH (10ETH 이상 참여자)</td>
                                 </tr>
                                 </tbody>
-                            </table>
+                            </table>--%>
                             <h4>
                                 4. 조건 및 마케팅 문의<br/>
                                 - 공식(한국) <a style="color: black;" href="https://t.me/allspark_korea"><b>텔레그램 참여하기</b></a><br/>
@@ -91,7 +92,7 @@
                             </h4>
                         </div>
                         <div class="card-header">
-                            <h2><b>[Allspark ICO 소개]</b></h2>
+                            <button style="font-size: 12pt" class="btn bgm-bluegray"><b>Allspark ICO 소개</b></button>
                         </div>
                         <div class="card-body card-padding">
                             <h4>
@@ -99,7 +100,8 @@
                                 2. 특징 : 컨텐츠거래플랫폼, Wanchain Dapp<br/>
                                 3. 조건 :<br/>
                             </h4>
-                            <table class="table table-bordered table-sm table-responsive" style="margin:auto;text-align: center;">
+                            <img width="100%" src="/img/desc/desc2.png">
+                            <%--<table class="table table-bordered table-sm table-responsive" style="margin:auto;text-align: center;">
                                 <thead>
                                 <tr>
                                     <th scope="col"></th>
@@ -124,7 +126,7 @@
                                     <td>1ETH = 3,000ASK</td>
                                 </tr>
                                 </tbody>
-                            </table>
+                            </table>--%>
                             <h4>
                                 4. 소개<br/>
                                 - Allspark 공식홈페이지 : <a style="color: black;" href="http://www.allsparkchain.com"><b>홈페이지로 가기</b></a><br/>
@@ -140,7 +142,7 @@
                             </h4>
                         </div>
                         <div class="card-header">
-                            <h2><b>[이벤트신청 및 추천하기]</b></h2>
+                            <button style="font-size: 12pt" class="btn bgm-bluegray">이벤트신청 및 추천하기</button>
                         </div>
                         <div class="card-body card-padding">
                             <button style="margin-left: 1em; margin-bottom: 1em; margin-right: 1em;"
